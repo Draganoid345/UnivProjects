@@ -10,3 +10,5 @@ Am comparat urmatorii algoritmi:
 4. Quick Sort (cu pivot ales random)
 5. Merge Sort
 6. Heap Sort
+
+Rezultatele sunt stocate in results.txt
