@@ -2,7 +2,7 @@
 
 ## Courses
 
-1. [SD - Structuri de Date](DSA)
+1. [SD - Structuri de Date](SD)
 
 2. [LFA -  Limbaje Formale si Automate](LFA)
 
