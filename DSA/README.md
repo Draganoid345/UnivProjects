@@ -1,4 +1,4 @@
-# Data Structures and Algorithms
+# Structuri de Date
 
 ## Projects
 
