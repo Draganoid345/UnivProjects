@@ -1,6 +1,6 @@
-#University Projects
+# University Projects
 
-##Courses
+## Courses
 
 1. [DSA - Data Structures and Algorithms](DSA)
 
