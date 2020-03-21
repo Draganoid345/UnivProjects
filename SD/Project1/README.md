@@ -12,3 +12,5 @@ Am comparat urmatorii algoritmi:
 6. Heap Sort
 
 Rezultatele sunt stocate in results.txt
+
+In input.txt sunt date cateva 3-tupluri, care descriu criteriile dupa care vor fi generati vectorii de testare a sortarilor: (n, valmax, negatives)
