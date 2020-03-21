@@ -2,8 +2,11 @@
 #define AUTOMAT_H
 
 class Automat {
-
+private:
     
+public:
+
+
 };
 
 #endif
