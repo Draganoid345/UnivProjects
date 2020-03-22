@@ -3,17 +3,11 @@
 istream& operator>> (istream& in, Automat& ob){
     int m;
     in >> ob.nrStates >> m;
-    cout << ob.nrStates << ' ' << m << '\n';
-    ob.transitions.resize(ob.nrStates + 1);
-    ob.transitionsInv.resize(ob.nrStates + 1);
-    for (int i=0; i <= ob.nrStates; i++){
-        ob.transitions[i].resize(ob.SZ);
-        ob.transitionsInv[i].resize(ob.SZ);
-    }
+    ob.transitions.resize(ob.nrStates + 1, vector <vector <int> > (ob.SZ));
+    ob.transitionsInv.resize(ob.nrStates + 1, vector <vector <int> > (ob.SZ));
     for (int i=0; i<m; i++){
         int x, y; char c;
-        cin >> x >> y >> c;
-        cout << x << ' ' << y << ' ' << c << '\n';
+        in >> x >> y >> c;
         ob.transitions[x][c - 'a'].push_back(y);
         ob.transitionsInv[y][c - 'a'].push_back(x);
     }
@@ -23,7 +17,7 @@ istream& operator>> (istream& in, Automat& ob){
     ob.isUseless.resize(ob.nrStates + 1, 0);
     for (int i=0; i<m; i++){
         int x;
-        cin >> x;
+        in >> x;
         ob.finalStates[x] = 1;
     }
     return in;
