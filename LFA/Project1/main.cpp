@@ -12,8 +12,16 @@ int main(){
 
     automat.removeUselessStates();
 
-    for (int i=1; i<=automat.nrStates; i++)
-        cout << i << " : " << (automat.isUseless[i] ? "Useless" : "Not useless") << '\n';
+    int nrWords;
+    in >> nrWords;
+    string word;
+    getline(in, word);
+    while (nrWords--){
+        getline(in, word);
+        if (automat.isAccepted(word, automat.initialState))
+            cout << word << " apartine automatului\n";
+        else cout << word << " nu apartine automatului\n";
+    }
     
     return 0;
 }

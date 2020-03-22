@@ -39,3 +39,13 @@ void Automat::removeUselessStates(){
     }
     for (int i=1; i <= this->nrStates; i++) this->isUseless[i] = !this->isUseless[i];
 }
+
+bool Automat::isAccepted(string& word, int nod, int idx) const {
+    if (idx == (int) word.length()) return this->finalStates[nod];
+    if (!this->transitions[nod][word[idx] - 'a'].size()) return 0;
+    for (int it: this->transitions[nod][word[idx] - 'a']){
+        if (isUseless[it]) continue;
+        if (this->isAccepted(word, it, idx + 1)) return 1;
+    }
+    return 0;
+}
