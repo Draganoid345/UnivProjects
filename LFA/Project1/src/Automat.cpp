@@ -3,8 +3,8 @@
 istream& operator>> (istream& in, Automat& ob){
     int m;
     in >> ob.nrStates >> m;
-    ob.transitions.resize(ob.nrStates + 1, vector <vector <int> > (ob.SZ));
-    ob.transitionsInv.resize(ob.nrStates + 1, vector <vector <int> > (ob.SZ));
+    ob.transitions.resize(ob.nrStates, vector <vector <int> > (ob.SZ));
+    ob.transitionsInv.resize(ob.nrStates, vector <vector <int> > (ob.SZ));
     for (int i=0; i<m; i++){
         int x, y; char c;
         in >> x >> y >> c;
@@ -25,7 +25,7 @@ istream& operator>> (istream& in, Automat& ob){
 
 void Automat::removeUselessStates(){
     queue <int> Q;
-    for (int i=1; i <= nrStates; i++){
+    for (int i=0; i < nrStates; i++){
         if (finalStates[i]) Q.push(i), isUseless[i] = 1;
     }
     while (!Q.empty()){
@@ -37,15 +37,15 @@ void Automat::removeUselessStates(){
             }
         }
     }
-    for (int i=1; i <= nrStates; i++) isUseless[i] = !isUseless[i];
+    for (int i=0; i < nrStates; i++) isUseless[i] = !isUseless[i];
 }
 
 bool Automat::isAccepted(string& word, int nod, int idx) {
     if (idx == (int) word.length()) return finalStates[nod];
     if (!transitions[nod][word[idx] - 'a'].size()) return 0;
-    for (int it: transitions[nod][word[idx] - 'a']){
+    for (int &it: transitions[nod][word[idx] - 'a']){
         if (isUseless[it]) continue;
-        if (badStates[{nod, idx + 2}]) continue;
+        if (badStates[{it, idx + 2}]) continue;
         if (isAccepted(word, it, idx + 1)) return 1;
     }
     badStates[{nod, idx + 1}] = 1;
