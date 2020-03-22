@@ -6,12 +6,11 @@ using namespace std;
 
 class Automat {
 //make private!!!!!!
-public:
+private:
     int nrStates;
     const int SZ = 30;
     vector <vector <vector <int> > > transitions;
     vector <vector <vector <int> > > transitionsInv;    
-    int initialState;
     vector <bool> finalStates;
     vector <bool> isUseless;
 
@@ -23,9 +22,11 @@ public:
             else return len < other.len;
         }
     };
-    map <nodeStates, bool> badStates;
+    
 
 public:
+    int initialState;
+    map <nodeStates, bool> badStates;
 
     friend istream& operator>> (istream&, Automat&);
     void removeUselessStates();
