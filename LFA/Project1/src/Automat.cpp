@@ -20,6 +20,7 @@ istream& operator>> (istream& in, Automat& ob){
         in >> x;
         ob.finalStates[x] = 1;
     }
+    ob.removeUselessStates();
     return in;
 }
 

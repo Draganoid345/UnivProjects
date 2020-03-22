@@ -10,8 +10,6 @@ int main(){
     Automat automat;
     in >> automat;
 
-    automat.removeUselessStates();
-
     int nrWords;
     in >> nrWords;
     string word;
