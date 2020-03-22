@@ -25,27 +25,29 @@ istream& operator>> (istream& in, Automat& ob){
 
 void Automat::removeUselessStates(){
     queue <int> Q;
-    for (int i=1; i <= this->nrStates; i++){
-        if (this->finalStates[i]) Q.push(i), this->isUseless[i] = 1;
+    for (int i=1; i <= nrStates; i++){
+        if (finalStates[i]) Q.push(i), isUseless[i] = 1;
     }
     while (!Q.empty()){
         int nod = Q.front();
         Q.pop();
         for (char c='a'; c<='z'; c++){
-            for (int &it: this->transitionsInv[nod][c - 'a']){
-                if (!this->isUseless[it]) Q.push(it), this->isUseless[it] = 1;
+            for (int &it: transitionsInv[nod][c - 'a']){
+                if (!isUseless[it]) Q.push(it), isUseless[it] = 1;
             }
         }
     }
-    for (int i=1; i <= this->nrStates; i++) this->isUseless[i] = !this->isUseless[i];
+    for (int i=1; i <= nrStates; i++) isUseless[i] = !isUseless[i];
 }
 
-bool Automat::isAccepted(string& word, int nod, int idx) const {
-    if (idx == (int) word.length()) return this->finalStates[nod];
-    if (!this->transitions[nod][word[idx] - 'a'].size()) return 0;
-    for (int it: this->transitions[nod][word[idx] - 'a']){
+bool Automat::isAccepted(string& word, int nod, int idx) {
+    if (idx == (int) word.length()) return finalStates[nod];
+    if (!transitions[nod][word[idx] - 'a'].size()) return 0;
+    for (int it: transitions[nod][word[idx] - 'a']){
         if (isUseless[it]) continue;
-        if (this->isAccepted(word, it, idx + 1)) return 1;
+        if (badStates[{nod, idx + 2}]) continue;
+        if (isAccepted(word, it, idx + 1)) return 1;
     }
+    badStates[{nod, idx + 1}] = 1;
     return 0;
 }

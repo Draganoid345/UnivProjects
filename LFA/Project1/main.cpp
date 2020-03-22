@@ -21,6 +21,7 @@ int main(){
         if (automat.isAccepted(word, automat.initialState))
             cout << word << " apartine automatului\n";
         else cout << word << " nu apartine automatului\n";
+        automat.badStates.clear();
     }
     
     return 0;
