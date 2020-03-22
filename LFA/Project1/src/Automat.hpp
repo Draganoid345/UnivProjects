@@ -30,7 +30,7 @@ public:
     friend istream& operator>> (istream&, Automat&);
     void removeUselessStates();
     bool isAccepted(string&, int, int = 0);
-    vector <string> firstWords(int = 100);
+    void firstWords(vector <string>&, int = 100)const;
 };
 
 #endif

@@ -24,5 +24,12 @@ int main(){
         automat.badStates.clear();
     }
     
+    vector <string> sol;
+    automat.firstWords(sol);
+    if (!sol.size()) cout << "Automatul nu accepta nici un cuvant\n";
+    else if (sol.size() < 100) cout << "Automatul accent doar " << sol.size() << " cuvinte:\n";
+    else cout << "Primele 100 de cuvinte acceptate de automat sunt:\n";
+    for (auto &it: sol)
+        cout << it << '\n';
     return 0;
 }

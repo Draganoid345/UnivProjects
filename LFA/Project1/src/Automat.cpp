@@ -51,3 +51,30 @@ bool Automat::isAccepted(string& word, int nod, int idx) {
     badStates[{nod, idx + 1}] = 1;
     return 0;
 }
+
+void Automat::firstWords(vector <string>& v, int n)const{
+    queue < pair <int, string> > Q;
+    unordered_set <string> S;
+    Q.push({initialState, ""});
+    while ((int) S.size() < n && !Q.empty()){
+        pair <int, string> curr = Q.front();
+        Q.pop();
+        for (char c='a'; c <= 'z'; c++){
+            for (const int &it: transitions[curr.first][c - 'a']){
+                if (isUseless[it]) continue;
+                if ((int) S.size() < n && finalStates[it]) S.insert(curr.second + c);
+                Q.push({it, curr.second + c});
+            }
+        }
+    }
+    for (string it: S) v.push_back(it);
+    sort(v.begin(), v.end(), [&](const string& unu, const string& doi){
+        if (unu.length() == doi.length()){
+            for (size_t i=0; i<unu.length(); i++){
+                if (unu[i] == doi[i]) continue;
+                return unu[i] < doi[i];
+            }
+        }
+        return unu.length() < doi.length();
+    });
+}
