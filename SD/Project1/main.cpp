@@ -22,7 +22,7 @@ int main(){
     for (int k=1; k<=tests; k++){
         cout << "Incepe testul " << k << '\n';
         in >> n >> valmax >> negatives;
-        arr = Utils::generateTest(n, valmax, negatives);
+        Utils::generateTest(arr, n, valmax, negatives);
         
         out << "Testul " << k << " :\n";
         out << n << " numere mai mici sau egale in modul decat " << valmax << '\n';
@@ -44,8 +44,11 @@ int main(){
         }
         else out << "\tPrea multe numere pentru BubbleSort\n";
 
-        out << "\n\tQuickSort:\n";
+        out << "\n\tQuickSort cu pivot ales random:\n";
         Utils::testTheSort(QuickSort::Sort, arr, out);
+
+        out << "\n\tQuickSort cu pivot ales cu mediana din 3:\n";
+        Utils::testTheSort(QuickSort::Sort3, arr, out);
 
         out << "\n\tHeapSort:\n";
         Utils::testTheSort(HeapSort::Sort, arr, out);

@@ -10,6 +10,9 @@ namespace QuickSort{
 
     void Sort(std::vector <int>&);
     void sortUtil(std::vector <int>&, int, int);
+
+    void Sort3(std::vector <int> &);
+    void sortUtil3(std::vector <int>&, int, int);
 }
 
 #endif

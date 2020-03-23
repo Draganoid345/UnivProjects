@@ -12,18 +12,17 @@ void Utils::testTheSort(void (*sortFunc) (std::vector <int>&) , std::vector <int
     out << "\tTime elapsed: " << duration.count() << " miliseconds\n";
 }
 
-std::vector <int> Utils::generateTest(int n, int valMax, bool negatives){
+void Utils::generateTest(std::vector<int> &aux, int n, int valMax, bool negatives){
     std::mt19937 rnd(std::chrono::steady_clock::now().time_since_epoch().count());
     std::uniform_int_distribution <int> _random(1, INT_MAX);
 
-    std::vector <int> aux;
+    aux.clear();
     for (int i=0; i<n; i++){
         int val = _random(rnd) % valMax;
         aux.push_back(val);
         if (!negatives) continue;
         if (i & 1) aux[i] *= -1;
     }
-    return aux;
 
 }
 

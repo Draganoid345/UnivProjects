@@ -11,7 +11,11 @@ Nu sunt numere negative
 	A fost sortat corect!
 	Time elapsed: 0 miliseconds
 
-	QuickSort:
+	QuickSort cu pivot ales random:
+	A fost sortat corect!
+	Time elapsed: 0 miliseconds
+
+	QuickSort cu pivot ales cu mediana din 3:
 	A fost sortat corect!
 	Time elapsed: 0 miliseconds
 
@@ -43,13 +47,17 @@ Nu sunt numere negative
 
 	CountSort:
 	A fost sortat corect!
-	Time elapsed: 1 miliseconds
+	Time elapsed: 0 miliseconds
 
 	BubbleSort:
 	A fost sortat corect!
 	Time elapsed: 0 miliseconds
 
-	QuickSort:
+	QuickSort cu pivot ales random:
+	A fost sortat corect!
+	Time elapsed: 0 miliseconds
+
+	QuickSort cu pivot ales cu mediana din 3:
 	A fost sortat corect!
 	Time elapsed: 0 miliseconds
 
@@ -81,13 +89,17 @@ Nu sunt numere negative
 
 	CountSort:
 	A fost sortat corect!
-	Time elapsed: 27 miliseconds
+	Time elapsed: 34 miliseconds
 
 	BubbleSort:
 	A fost sortat corect!
 	Time elapsed: 0 miliseconds
 
-	QuickSort:
+	QuickSort cu pivot ales random:
+	A fost sortat corect!
+	Time elapsed: 0 miliseconds
+
+	QuickSort cu pivot ales cu mediana din 3:
 	A fost sortat corect!
 	Time elapsed: 0 miliseconds
 
@@ -122,7 +134,11 @@ Nu sunt numere negative
 	A fost sortat corect!
 	Time elapsed: 0 miliseconds
 
-	QuickSort:
+	QuickSort cu pivot ales random:
+	A fost sortat corect!
+	Time elapsed: 0 miliseconds
+
+	QuickSort cu pivot ales cu mediana din 3:
 	A fost sortat corect!
 	Time elapsed: 0 miliseconds
 
@@ -160,7 +176,11 @@ Nu sunt numere negative
 	A fost sortat corect!
 	Time elapsed: 165 miliseconds
 
-	QuickSort:
+	QuickSort cu pivot ales random:
+	A fost sortat corect!
+	Time elapsed: 0 miliseconds
+
+	QuickSort cu pivot ales cu mediana din 3:
 	A fost sortat corect!
 	Time elapsed: 0 miliseconds
 
@@ -198,7 +218,11 @@ Nu sunt numere negative
 	A fost sortat corect!
 	Time elapsed: 164 miliseconds
 
-	QuickSort:
+	QuickSort cu pivot ales random:
+	A fost sortat corect!
+	Time elapsed: 0 miliseconds
+
+	QuickSort cu pivot ales cu mediana din 3:
 	A fost sortat corect!
 	Time elapsed: 0 miliseconds
 
@@ -236,7 +260,11 @@ Nu sunt numere negative
 	A fost sortat corect!
 	Time elapsed: 163 miliseconds
 
-	QuickSort:
+	QuickSort cu pivot ales random:
+	A fost sortat corect!
+	Time elapsed: 0 miliseconds
+
+	QuickSort cu pivot ales cu mediana din 3:
 	A fost sortat corect!
 	Time elapsed: 0 miliseconds
 
@@ -271,7 +299,11 @@ Nu sunt numere negative
 	A fost sortat corect!
 	Time elapsed: 164 miliseconds
 
-	QuickSort:
+	QuickSort cu pivot ales random:
+	A fost sortat corect!
+	Time elapsed: 0 miliseconds
+
+	QuickSort cu pivot ales cu mediana din 3:
 	A fost sortat corect!
 	Time elapsed: 0 miliseconds
 
@@ -303,32 +335,36 @@ Nu sunt numere negative
 
 	CountSort:
 	A fost sortat corect!
-	Time elapsed: 2 miliseconds
+	Time elapsed: 3 miliseconds
 	Prea multe numere pentru BubbleSort
 
-	QuickSort:
+	QuickSort cu pivot ales random:
+	A fost sortat corect!
+	Time elapsed: 51 miliseconds
+
+	QuickSort cu pivot ales cu mediana din 3:
 	A fost sortat corect!
 	Time elapsed: 51 miliseconds
 
 	HeapSort:
 	A fost sortat corect!
-	Time elapsed: 92 miliseconds
+	Time elapsed: 91 miliseconds
 
 	RadixSort in baza 16:
 	A fost sortat corect!
-	Time elapsed: 46 miliseconds
+	Time elapsed: 45 miliseconds
 
 	RadixSort in baza 256:
 	A fost sortat corect!
-	Time elapsed: 25 miliseconds
+	Time elapsed: 26 miliseconds
 
 	MergeSort:
 	A fost sortat corect!
-	Time elapsed: 87 miliseconds
+	Time elapsed: 85 miliseconds
 
 	STLSort:
 	A fost sortat corect!
-	Time elapsed: 36 miliseconds
+	Time elapsed: 39 miliseconds
 
 
 Testul 10 :
@@ -338,20 +374,24 @@ Nu sunt numere negative
 
 	CountSort:
 	A fost sortat corect!
-	Time elapsed: 17 miliseconds
+	Time elapsed: 12 miliseconds
 	Prea multe numere pentru BubbleSort
 
-	QuickSort:
+	QuickSort cu pivot ales random:
+	A fost sortat corect!
+	Time elapsed: 105 miliseconds
+
+	QuickSort cu pivot ales cu mediana din 3:
 	A fost sortat corect!
 	Time elapsed: 105 miliseconds
 
 	HeapSort:
 	A fost sortat corect!
-	Time elapsed: 140 miliseconds
+	Time elapsed: 136 miliseconds
 
 	RadixSort in baza 16:
 	A fost sortat corect!
-	Time elapsed: 45 miliseconds
+	Time elapsed: 44 miliseconds
 
 	RadixSort in baza 256:
 	A fost sortat corect!
@@ -359,11 +399,11 @@ Nu sunt numere negative
 
 	MergeSort:
 	A fost sortat corect!
-	Time elapsed: 125 miliseconds
+	Time elapsed: 127 miliseconds
 
 	STLSort:
 	A fost sortat corect!
-	Time elapsed: 71 miliseconds
+	Time elapsed: 76 miliseconds
 
 
 Testul 11 :
@@ -373,21 +413,25 @@ Nu sunt numere negative
 	Numere prea mari pentru CountSort
 	Prea multe numere pentru BubbleSort
 
-	QuickSort:
+	QuickSort cu pivot ales random:
+	A fost sortat corect!
+	Time elapsed: 110 miliseconds
+
+	QuickSort cu pivot ales cu mediana din 3:
 	A fost sortat corect!
 	Time elapsed: 110 miliseconds
 
 	HeapSort:
 	A fost sortat corect!
-	Time elapsed: 137 miliseconds
+	Time elapsed: 135 miliseconds
 
 	RadixSort in baza 16:
 	A fost sortat corect!
-	Time elapsed: 41 miliseconds
+	Time elapsed: 44 miliseconds
 
 	RadixSort in baza 256:
 	A fost sortat corect!
-	Time elapsed: 21 miliseconds
+	Time elapsed: 23 miliseconds
 
 	MergeSort:
 	A fost sortat corect!
@@ -395,7 +439,7 @@ Nu sunt numere negative
 
 	STLSort:
 	A fost sortat corect!
-	Time elapsed: 72 miliseconds
+	Time elapsed: 76 miliseconds
 
 
 Testul 12 :
@@ -408,29 +452,33 @@ Nu sunt numere negative
 	Time elapsed: 283 miliseconds
 	Prea multe numere pentru BubbleSort
 
-	QuickSort:
+	QuickSort cu pivot ales random:
 	A fost sortat corect!
-	Time elapsed: 5569 miliseconds
+	Time elapsed: 5617 miliseconds
+
+	QuickSort cu pivot ales cu mediana din 3:
+	A fost sortat corect!
+	Time elapsed: 5605 miliseconds
 
 	HeapSort:
 	A fost sortat corect!
-	Time elapsed: 11268 miliseconds
+	Time elapsed: 11166 miliseconds
 
 	RadixSort in baza 16:
 	A fost sortat corect!
-	Time elapsed: 4906 miliseconds
+	Time elapsed: 4840 miliseconds
 
 	RadixSort in baza 256:
 	A fost sortat corect!
-	Time elapsed: 2650 miliseconds
+	Time elapsed: 2593 miliseconds
 
 	MergeSort:
 	A fost sortat corect!
-	Time elapsed: 10168 miliseconds
+	Time elapsed: 10002 miliseconds
 
 	STLSort:
 	A fost sortat corect!
-	Time elapsed: 4290 miliseconds
+	Time elapsed: 4313 miliseconds
 
 
 Testul 13 :
@@ -440,32 +488,36 @@ Nu sunt numere negative
 
 	CountSort:
 	A fost sortat corect!
-	Time elapsed: 748 miliseconds
+	Time elapsed: 573 miliseconds
 	Prea multe numere pentru BubbleSort
 
-	QuickSort:
+	QuickSort cu pivot ales random:
 	A fost sortat corect!
-	Time elapsed: 9981 miliseconds
+	Time elapsed: 9894 miliseconds
+
+	QuickSort cu pivot ales cu mediana din 3:
+	A fost sortat corect!
+	Time elapsed: 9942 miliseconds
 
 	HeapSort:
 	A fost sortat corect!
-	Time elapsed: 40005 miliseconds
+	Time elapsed: 39443 miliseconds
 
 	RadixSort in baza 16:
 	A fost sortat corect!
-	Time elapsed: 4713 miliseconds
+	Time elapsed: 4914 miliseconds
 
 	RadixSort in baza 256:
 	A fost sortat corect!
-	Time elapsed: 2988 miliseconds
+	Time elapsed: 2861 miliseconds
 
 	MergeSort:
 	A fost sortat corect!
-	Time elapsed: 15289 miliseconds
+	Time elapsed: 15183 miliseconds
 
 	STLSort:
 	A fost sortat corect!
-	Time elapsed: 8208 miliseconds
+	Time elapsed: 8516 miliseconds
 
 
 Testul 14 :
@@ -475,29 +527,33 @@ Nu sunt numere negative
 	Numere prea mari pentru CountSort
 	Prea multe numere pentru BubbleSort
 
-	QuickSort:
+	QuickSort cu pivot ales random:
 	A fost sortat corect!
-	Time elapsed: 13533 miliseconds
+	Time elapsed: 13470 miliseconds
+
+	QuickSort cu pivot ales cu mediana din 3:
+	A fost sortat corect!
+	Time elapsed: 13536 miliseconds
 
 	HeapSort:
 	A fost sortat corect!
-	Time elapsed: 41231 miliseconds
+	Time elapsed: 40112 miliseconds
 
 	RadixSort in baza 16:
 	A fost sortat corect!
-	Time elapsed: 4568 miliseconds
+	Time elapsed: 4508 miliseconds
 
 	RadixSort in baza 256:
 	A fost sortat corect!
-	Time elapsed: 2469 miliseconds
+	Time elapsed: 2435 miliseconds
 
 	MergeSort:
 	A fost sortat corect!
-	Time elapsed: 16761 miliseconds
+	Time elapsed: 16635 miliseconds
 
 	STLSort:
 	A fost sortat corect!
-	Time elapsed: 9682 miliseconds
+	Time elapsed: 10134 miliseconds
 
 
 Testul 15 :
@@ -513,7 +569,11 @@ Sunt si numere negative
 	A fost sortat corect!
 	Time elapsed: 0 miliseconds
 
-	QuickSort:
+	QuickSort cu pivot ales random:
+	A fost sortat corect!
+	Time elapsed: 0 miliseconds
+
+	QuickSort cu pivot ales cu mediana din 3:
 	A fost sortat corect!
 	Time elapsed: 0 miliseconds
 
@@ -545,7 +605,11 @@ Sunt si numere negative
 	A fost sortat corect!
 	Time elapsed: 0 miliseconds
 
-	QuickSort:
+	QuickSort cu pivot ales random:
+	A fost sortat corect!
+	Time elapsed: 0 miliseconds
+
+	QuickSort cu pivot ales cu mediana din 3:
 	A fost sortat corect!
 	Time elapsed: 0 miliseconds
 
@@ -571,13 +635,17 @@ Sunt si numere negative
 
 	CountSort:
 	A fost sortat corect!
-	Time elapsed: 50 miliseconds
+	Time elapsed: 47 miliseconds
 
 	BubbleSort:
 	A fost sortat corect!
 	Time elapsed: 0 miliseconds
 
-	QuickSort:
+	QuickSort cu pivot ales random:
+	A fost sortat corect!
+	Time elapsed: 0 miliseconds
+
+	QuickSort cu pivot ales cu mediana din 3:
 	A fost sortat corect!
 	Time elapsed: 0 miliseconds
 
@@ -606,7 +674,11 @@ Sunt si numere negative
 	A fost sortat corect!
 	Time elapsed: 0 miliseconds
 
-	QuickSort:
+	QuickSort cu pivot ales random:
+	A fost sortat corect!
+	Time elapsed: 0 miliseconds
+
+	QuickSort cu pivot ales cu mediana din 3:
 	A fost sortat corect!
 	Time elapsed: 0 miliseconds
 
@@ -636,9 +708,13 @@ Sunt si numere negative
 
 	BubbleSort:
 	A fost sortat corect!
-	Time elapsed: 133 miliseconds
+	Time elapsed: 132 miliseconds
 
-	QuickSort:
+	QuickSort cu pivot ales random:
+	A fost sortat corect!
+	Time elapsed: 0 miliseconds
+
+	QuickSort cu pivot ales cu mediana din 3:
 	A fost sortat corect!
 	Time elapsed: 0 miliseconds
 
@@ -668,9 +744,13 @@ Sunt si numere negative
 
 	BubbleSort:
 	A fost sortat corect!
-	Time elapsed: 133 miliseconds
+	Time elapsed: 131 miliseconds
 
-	QuickSort:
+	QuickSort cu pivot ales random:
+	A fost sortat corect!
+	Time elapsed: 0 miliseconds
+
+	QuickSort cu pivot ales cu mediana din 3:
 	A fost sortat corect!
 	Time elapsed: 0 miliseconds
 
@@ -696,13 +776,17 @@ Sunt si numere negative
 
 	CountSort:
 	A fost sortat corect!
-	Time elapsed: 52 miliseconds
+	Time elapsed: 48 miliseconds
 
 	BubbleSort:
 	A fost sortat corect!
 	Time elapsed: 131 miliseconds
 
-	QuickSort:
+	QuickSort cu pivot ales random:
+	A fost sortat corect!
+	Time elapsed: 0 miliseconds
+
+	QuickSort cu pivot ales cu mediana din 3:
 	A fost sortat corect!
 	Time elapsed: 0 miliseconds
 
@@ -729,9 +813,13 @@ Sunt si numere negative
 
 	BubbleSort:
 	A fost sortat corect!
-	Time elapsed: 133 miliseconds
+	Time elapsed: 131 miliseconds
 
-	QuickSort:
+	QuickSort cu pivot ales random:
+	A fost sortat corect!
+	Time elapsed: 0 miliseconds
+
+	QuickSort cu pivot ales cu mediana din 3:
 	A fost sortat corect!
 	Time elapsed: 0 miliseconds
 
@@ -757,12 +845,16 @@ Sunt si numere negative
 
 	CountSort:
 	A fost sortat corect!
-	Time elapsed: 2 miliseconds
+	Time elapsed: 3 miliseconds
 	Prea multe numere pentru BubbleSort
 
-	QuickSort:
+	QuickSort cu pivot ales random:
 	A fost sortat corect!
-	Time elapsed: 53 miliseconds
+	Time elapsed: 52 miliseconds
+
+	QuickSort cu pivot ales cu mediana din 3:
+	A fost sortat corect!
+	Time elapsed: 52 miliseconds
 
 	HeapSort:
 	A fost sortat corect!
@@ -772,11 +864,11 @@ Sunt si numere negative
 
 	MergeSort:
 	A fost sortat corect!
-	Time elapsed: 86 miliseconds
+	Time elapsed: 85 miliseconds
 
 	STLSort:
 	A fost sortat corect!
-	Time elapsed: 37 miliseconds
+	Time elapsed: 39 miliseconds
 
 
 Testul 24 :
@@ -786,26 +878,30 @@ Sunt si numere negative
 
 	CountSort:
 	A fost sortat corect!
-	Time elapsed: 24 miliseconds
+	Time elapsed: 23 miliseconds
 	Prea multe numere pentru BubbleSort
 
-	QuickSort:
+	QuickSort cu pivot ales random:
 	A fost sortat corect!
-	Time elapsed: 104 miliseconds
+	Time elapsed: 106 miliseconds
+
+	QuickSort cu pivot ales cu mediana din 3:
+	A fost sortat corect!
+	Time elapsed: 106 miliseconds
 
 	HeapSort:
 	A fost sortat corect!
-	Time elapsed: 133 miliseconds
+	Time elapsed: 130 miliseconds
 
 	Numerele negative ne impiedica sa folosim RadixSort
 
 	MergeSort:
 	A fost sortat corect!
-	Time elapsed: 121 miliseconds
+	Time elapsed: 120 miliseconds
 
 	STLSort:
 	A fost sortat corect!
-	Time elapsed: 71 miliseconds
+	Time elapsed: 75 miliseconds
 
 
 Testul 25 :
@@ -815,23 +911,27 @@ Sunt si numere negative
 	Numere prea mari pentru CountSort
 	Prea multe numere pentru BubbleSort
 
-	QuickSort:
+	QuickSort cu pivot ales random:
+	A fost sortat corect!
+	Time elapsed: 110 miliseconds
+
+	QuickSort cu pivot ales cu mediana din 3:
 	A fost sortat corect!
 	Time elapsed: 109 miliseconds
 
 	HeapSort:
 	A fost sortat corect!
-	Time elapsed: 132 miliseconds
+	Time elapsed: 130 miliseconds
 
 	Numerele negative ne impiedica sa folosim RadixSort
 
 	MergeSort:
 	A fost sortat corect!
-	Time elapsed: 122 miliseconds
+	Time elapsed: 120 miliseconds
 
 	STLSort:
 	A fost sortat corect!
-	Time elapsed: 71 miliseconds
+	Time elapsed: 75 miliseconds
 
 
 Testul 26 :
@@ -844,23 +944,27 @@ Sunt si numere negative
 	Time elapsed: 282 miliseconds
 	Prea multe numere pentru BubbleSort
 
-	QuickSort:
+	QuickSort cu pivot ales random:
 	A fost sortat corect!
-	Time elapsed: 5722 miliseconds
+	Time elapsed: 5744 miliseconds
+
+	QuickSort cu pivot ales cu mediana din 3:
+	A fost sortat corect!
+	Time elapsed: 5649 miliseconds
 
 	HeapSort:
 	A fost sortat corect!
-	Time elapsed: 12838 miliseconds
+	Time elapsed: 12713 miliseconds
 
 	Numerele negative ne impiedica sa folosim RadixSort
 
 	MergeSort:
 	A fost sortat corect!
-	Time elapsed: 10206 miliseconds
+	Time elapsed: 10048 miliseconds
 
 	STLSort:
 	A fost sortat corect!
-	Time elapsed: 4331 miliseconds
+	Time elapsed: 4318 miliseconds
 
 
 Testul 27 :
@@ -870,26 +974,30 @@ Sunt si numere negative
 
 	CountSort:
 	A fost sortat corect!
-	Time elapsed: 1278 miliseconds
+	Time elapsed: 1240 miliseconds
 	Prea multe numere pentru BubbleSort
 
-	QuickSort:
+	QuickSort cu pivot ales random:
 	A fost sortat corect!
-	Time elapsed: 10344 miliseconds
+	Time elapsed: 10262 miliseconds
+
+	QuickSort cu pivot ales cu mediana din 3:
+	A fost sortat corect!
+	Time elapsed: 10218 miliseconds
 
 	HeapSort:
 	A fost sortat corect!
-	Time elapsed: 40665 miliseconds
+	Time elapsed: 39146 miliseconds
 
 	Numerele negative ne impiedica sa folosim RadixSort
 
 	MergeSort:
 	A fost sortat corect!
-	Time elapsed: 15397 miliseconds
+	Time elapsed: 15196 miliseconds
 
 	STLSort:
 	A fost sortat corect!
-	Time elapsed: 8564 miliseconds
+	Time elapsed: 8582 miliseconds
 
 
 Testul 28 :
@@ -899,22 +1007,26 @@ Sunt si numere negative
 	Numere prea mari pentru CountSort
 	Prea multe numere pentru BubbleSort
 
-	QuickSort:
+	QuickSort cu pivot ales random:
 	A fost sortat corect!
-	Time elapsed: 13425 miliseconds
+	Time elapsed: 13429 miliseconds
+
+	QuickSort cu pivot ales cu mediana din 3:
+	A fost sortat corect!
+	Time elapsed: 13118 miliseconds
 
 	HeapSort:
 	A fost sortat corect!
-	Time elapsed: 40265 miliseconds
+	Time elapsed: 39507 miliseconds
 
 	Numerele negative ne impiedica sa folosim RadixSort
 
 	MergeSort:
 	A fost sortat corect!
-	Time elapsed: 16435 miliseconds
+	Time elapsed: 16270 miliseconds
 
 	STLSort:
 	A fost sortat corect!
-	Time elapsed: 9468 miliseconds
+	Time elapsed: 9945 miliseconds
 
 

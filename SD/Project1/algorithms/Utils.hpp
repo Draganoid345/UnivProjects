@@ -12,7 +12,7 @@ namespace Utils{
 
     void testTheSort(void (*) (std::vector <int>&) , std::vector <int>, std::ostream& = std::cout);
     
-    std::vector <int> generateTest(int, int, bool);
+    void generateTest(std::vector <int>&, int, int, bool);
 
     bool isSorted(std::vector <int>&);
 }
