@@ -1,5 +1,5 @@
 
-sources = main.cpp #src/*.cpp
+sources = main.cpp src/*.cpp
 flags = -std=c++11 -Wall -Wextra -fsanitize=address,undefined,signed-integer-overflow
 flags_fast = -std=c++11 -O2
 

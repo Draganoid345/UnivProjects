@@ -4,7 +4,17 @@
 
 using namespace std;
 
+ifstream in ("input.in");
+
 int main(){
-    cout << "Hello World!\n";
+    NFA automat;
+    in >> automat;
+
+    cout << automat << '\n';
+
+    automat.removeLambdaTransitions();
+
+    cout << automat << '\n';
+
     return 0;
 }
