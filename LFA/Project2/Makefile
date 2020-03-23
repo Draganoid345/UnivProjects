@@ -4,7 +4,7 @@ flags = -std=c++11 -Wall -Wextra -fsanitize=address,undefined,signed-integer-ove
 flags_fast = -std=c++11 -O2
 
 # optional, we can just work with relative paths
-inc = src/
+inc = src/ inc/
 inc_params = $(foreach d, $(inc), -I$d)
 
 default: main
