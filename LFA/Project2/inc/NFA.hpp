@@ -11,7 +11,7 @@ private:
     int nrStates;
     const int SZ = 30;
     const char lambda = '#';
-    vector <vector <set <int> > > transitions;
+    vector <map<char, set<int> > > transitions;
     vector <bool> isStart;  
     vector <bool> isFinal;
 public:

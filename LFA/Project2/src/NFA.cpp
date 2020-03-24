@@ -3,15 +3,14 @@
 istream& operator>>(istream& in, NFA& ob){
     int m;
     in >> ob.nrStates >> m;
-    ob.transitions.resize(ob.nrStates, vector <set <int> > (ob.SZ));
+    ob.transitions.resize(ob.nrStates, map<char, set<int>>());
     ob.isFinal.resize(ob.nrStates, 0);
     ob.isStart.resize(ob.nrStates, 0);
     for (int i=0; i<m; i++){
         int x, y; char c;
         in >> x >> y >> c;
-        if (c == '#' && x == y) continue;
-        if (c == ob.lambda) ob.transitions[x][0].insert(y);
-        else ob.transitions[x][c - 'a' + 1].insert(y);
+        if (c == ob.lambda && x == y) continue;
+        ob.transitions[x][c].insert(y);
     }
     in >> m;
     for (int i=0; i<m; i++){
@@ -28,9 +27,9 @@ istream& operator>>(istream& in, NFA& ob){
 
 ostream& operator<<(ostream& out, const NFA& ob){
     for (int i=0; i<ob.nrStates; i++){
-        for (char c=0; c<=27; c++){
-            for (auto it: ob.transitions[i][c]){
-                out << i << " -> " << it << " prin " << char((!c ? '#' : (c + 'a' - 1))) << '\n';
+        for (auto edge: ob.transitions[i]){
+            for (auto to: edge.second){
+                out << i << " -> " << to << " prin " << char(edge.first) << '\n';
             }
         }
     }
@@ -45,36 +44,54 @@ ostream& operator<<(ostream& out, const NFA& ob){
     return out;
 }
 
+
 void NFA::removeLambdaTransitions(){
     bool makeChanges = 1;
     while (makeChanges){
         makeChanges = 0;
         for (int i=0; i < nrStates; i++){
             // consider all lambda-transitions
-            for (int it: transitions[i][0]){
-                // duplicate all the transitions from v2
-                for (char c=0; c <= 'z' - 'a' + 1; c++){
-                    for (int it2: transitions[it][c]){
-                        transitions[i][c].insert(it2);
+            for (int it: transitions[i][lambda]){
+                // duplicate all the transitions from to
+                for (auto &edge: transitions[it]){
+                    for (auto &it2: edge.second){
+                        transitions[i][edge.first].insert(it2);
                         makeChanges = 1;
                     }
                 }
-                
+
                 // if the target state is final, then the current one is also a final state
                 if (isFinal[it]) isFinal[i] = 1, makeChanges = 1;
 
                 // if current state is an initial state, then the target state is also an initial state
                 if (isStart[i]) isStart[it] = 1, makeChanges = 1;
             }
+
+            // for (int it: transitions[i][0]){
+            //     // duplicate all the transitions from v2
+            //     for (char c=0; c <= 'z' - 'a' + 1; c++){
+            //         for (int it2: transitions[it][c]){
+            //             transitions[i][c].insert(it2);
+            //             makeChanges = 1;
+            //         }
+            //     }
+                
+            //     // if the target state is final, then the current one is also a final state
+            //     if (isFinal[it]) isFinal[i] = 1, makeChanges = 1;
+
+            //     // if current state is an initial state, then the target state is also an initial state
+            //     if (isStart[i]) isStart[it] = 1, makeChanges = 1;
+            // }
             
             // remove all the considered lambda-transitions
-            transitions[i][0].clear();
+            transitions[i][lambda].clear();
         }
     }
 
     
 }
 
+/*
 NFA::operator DFA(){
     map <set <int>, int> mp;
     set <int> aux;
@@ -85,3 +102,4 @@ NFA::operator DFA(){
         mp[aux] = ++n;
     }
 }
+*/

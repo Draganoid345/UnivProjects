@@ -8,7 +8,7 @@ class DFA{
 private:
     int nrStates;
     const int SZ = 30;
-    vector <vector <int> > transitions;
+    vector <map<char, int> > transitions;
     vector <bool> isStart;
     vector <bool> isFinal;
 
