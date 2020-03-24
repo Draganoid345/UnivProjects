@@ -6,15 +6,17 @@
 
 using namespace std;
 
+const string alfabet = "#abcdefgh";
+
 class NFA{
 private:
     int nrStates;
-    const int SZ = 30;
     const char lambda = '#';
     vector <map<char, set<int> > > transitions;
     vector <bool> isStart;  
     vector <bool> isFinal;
 public:
+    int initialState;
     
     friend istream& operator>>(istream&, NFA&);
     friend ostream& operator<<(ostream&, const NFA&);

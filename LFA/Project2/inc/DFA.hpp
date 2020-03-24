@@ -7,13 +7,14 @@ using namespace std;
 class DFA{
 private:
     int nrStates;
-    const int SZ = 30;
     vector <map<char, int> > transitions;
-    vector <bool> isStart;
     vector <bool> isFinal;
 
 public:
-    
+    int initialState;
+
+    DFA(vector <map <char, int> >&, int&, vector<bool>&);
+    friend ostream& operator << (ostream&, const DFA&);
 };
 
 #endif

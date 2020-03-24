@@ -16,5 +16,10 @@ int main(){
 
     cout << automat << '\n';
 
+    //casting, sort of constructor operator
+    DFA automat2 = DFA(automat);
+
+    cout << automat2 << '\n';
+
     return 0;
 }
