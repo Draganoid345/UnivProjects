@@ -74,3 +74,14 @@ void NFA::removeLambdaTransitions(){
 
     
 }
+
+NFA::operator DFA(){
+    map <set <int>, int> mp;
+    set <int> aux;
+    queue <int> Q;
+    for (int i=0; i < nrStates; i++){
+        if (!isStart[i]) continue;
+        aux.insert(i);
+        mp[aux] = ++n;
+    }
+}
