@@ -1,7 +1,7 @@
 #include "DFA.hpp"
 
 DFA::DFA(vector <map <char,int> > &edges, int &initState, vector <bool> &finalStates):
-    nrStates(edges.size()), transitions(edges), isFinal(finalStates), initialState(initState){}
+    nrStates(edges.size()), transitions(edges), isFinal(finalStates), isUnreachable(vector<bool>(edges.size(), 0)), initialState(initState){}
 
 ostream& operator<<(ostream &out, const DFA &ob){
     out << ob.nrStates << " states\n";
@@ -35,13 +35,54 @@ bool DFA::isSameClass(vector <int> &pr, int &a, int &b){
     return true;
 }
 
+void DFA::removeUnreachableStates(){
+    vector <vector <int> > invTrans(nrStates);
+
+    for (int i=0; i<nrStates; i++){
+        for (auto edge: transitions[i]){
+            invTrans[edge.second].push_back(i);
+        }
+    }
+
+    isUnreachable.clear();
+    isUnreachable.resize(nrStates, 1);
+
+    queue <int> Q;
+    vector <bool> viz(nrStates, 0);
+    Q.push(initialState);
+    viz[initialState] = 1;
+    while (!Q.empty()){
+        int nod = Q.front();
+        Q.pop();
+        for (auto &edge: transitions[nod])
+            if (!viz[edge.second]) viz[edge.second] = 1, Q.push(edge.second);
+    }
+    for (int i=0; i<nrStates; i++)
+        isUnreachable[i] = (isUnreachable[i] & viz[i]);
+    
+    viz.clear();
+    viz.resize(nrStates, 0);
+    for (int i=0; i<nrStates; i++)
+        if (isFinal[i]) Q.push(i), viz[i] = 1;
+    while (!Q.empty()){
+        int nod = Q.front();
+        Q.pop();
+        for (auto &it: invTrans[nod])
+            if (!viz[it]) viz[it] = 1, Q.push(it);
+    }
+
+    for (int i=0; i<nrStates; i++) 
+        isUnreachable[i] = (isUnreachable[i] & viz[i]), isUnreachable[i] = (isUnreachable[i] ^ 1);
+}
+
 void DFA::minimize(){
     removeUnreachableStates();
     vector <vector <int> > pr(2, vector<int>(nrStates, 0));
     map <int, vector<int> > mp[2];
     int fnNod = -1;
     for (int i=0; i < nrStates; i++){
-        if (isUnreachable[i]) continue;
+        // nu e bine sa-l ignor, poate sa-mi imi scape un nod pt rejecturi
+        // if (isUnreachable[i]) continue;
         if (isFinal[i]){
             if (fnNod == -1) fnNod = i;
             pr[0][i] = fnNod;
@@ -53,11 +94,6 @@ void DFA::minimize(){
         }
     }
     bool dpState = 1, makeChanges = 1;
-    for (auto it: mp[!dpState]){
-        for (auto it2: it.second) cout << it2 << ' ';
-        cout << "\n";
-    }
-    cout << "\n\n";
     while (makeChanges){
         makeChanges = 0;
         for (auto &eqClass: mp[!dpState]){
@@ -84,24 +120,37 @@ void DFA::minimize(){
             }
         }
         dpState = !dpState;
-        for (auto it: mp[!dpState]){
-            for (auto it2: it.second) cout << it2 << ' ';
-            cout << "\n";
-        }
-        for (int i=0; i<nrStates; i++)
-            cout << i << " : " << pr[!dpState][i] << '\n';
-        cout << "\n\n";
+        // for (auto &it: mp[!dpState]){
+        //     for (auto it2: it.second) cout << it2 << ' ';
+        //     cout << '\n';
+        // }
+        // cout << "\n";
+        pr[dpState].clear();
         pr[dpState].resize(nrStates, 0);
         mp[dpState].clear();
     }
-    for (auto it: mp[!dpState]){
-        for (auto it2: it.second) cout << it2 << ' ';
-        cout << '\n';
-    }
-    int cnt = 0;
+    int n = 0, initState2 = -1;
     vector <int> newIdx(nrStates);
-    for (int i=0; i<nrStates; i++){
-        if (isUnreachable[i]) cnt++;
-        else newIdx[i] = i - cnt;
+    vector <bool> isFinal2, isUnreachable2;
+    for (auto &it: mp[!dpState]){
+        newIdx[it.first] = n++;
+        isFinal2.push_back(isFinal[it.second.front()]);
+        isUnreachable2.push_back(0);
+        if (initState2 != -1) continue;
+        if (count(it.second.begin(), it.second.end(), initialState)) initState2 = n - 1;
     }
+    vector <map <char, int> > edges(n);
+    for (int i=0; i<nrStates; i++){
+        if (isUnreachable[i]) continue;
+        int iFather = pr[!dpState][i];
+        for (char c: alfabet){
+            for (int &it: mp[!dpState][iFather]){
+                if (!transitions[it].count(c)) continue;
+                if (isUnreachable[transitions[it][c]]) continue;
+                edges[newIdx[iFather]][c] = newIdx[pr[!dpState][transitions[it][c]]];
+                break;
+            }
+        }
+    }
+    *this = DFA(edges, initState2, isFinal2);
 }

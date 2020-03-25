@@ -4,7 +4,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const string alfabet = "#abcdefgh";
+const string alfabet = "#abcdefgh0123456789";
 
 class DFA{
 private:
@@ -18,6 +18,7 @@ public:
 
     // constructor that will be used to cast the NFA into a DFA
     DFA(vector <map <char, int> >&, int&, vector<bool>&);
+    DFA(vector <map <char, int> >&, int&, vector<bool>&, vector<bool>&);
 
     friend ostream& operator << (ostream&, const DFA&);
     void removeUnreachableStates();
