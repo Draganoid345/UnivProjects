@@ -6,8 +6,6 @@
 
 using namespace std;
 
-const string alfabet = "#abcdefgh";
-
 class NFA{
 private:
     int nrStates;

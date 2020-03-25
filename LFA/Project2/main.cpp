@@ -21,5 +21,7 @@ int main(){
 
     cout << automat2 << '\n';
 
+    automat2.minimize();
+
     return 0;
 }
