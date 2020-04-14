@@ -20,14 +20,20 @@ private:
     size_t size;
     Node* root;
 
-    Node* insert(Node* node, int &val);
+    Node* insert(Node* &node, int &val);
+    Node* erase(Node* node, int &val);
+    Node* getMin(Node* node);
+    bool isPresent(Node* node, int &val)const;
+    int lower_bound(Node* node, int &val)const;
+    int upper_bound(Node* node, int &val)const;
 
     Node* rr_rotate(Node* &);
     Node* rl_rotate(Node* &);
     Node* lr_rotate(Node* &);
     Node* ll_rotate(Node* &);
 
-    void inorder(std::ostream&, Node*&)const;
+    void inorder(std::ostream&, Node*)const;
+    void inorder(std::ostream&, Node*, int& lo, int &hi)const;
 
 public:
     AVL();
@@ -35,7 +41,16 @@ public:
 
     void insert(int val);
 
-    void inorder(std::ostream&);   
+    void erase(int val);
+
+    void inorder(std::ostream&)const;;
+    void inorder(std::ostream&, int lo, int hi)const;
+
+    bool isPresent(int val)const;
+
+    int lower_bound(int val)const;
+
+    int upper_bound(int val)const;
 
 };
 
