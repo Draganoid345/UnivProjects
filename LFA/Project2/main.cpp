@@ -10,7 +10,7 @@ int main(){
     NFA automat;
     in >> automat;
 
-    cout << "Read the NFA:";
+    cout << "Read the NFA:\n";
     cout << automat << '\n';
 
     automat.removeLambdaTransitions();
