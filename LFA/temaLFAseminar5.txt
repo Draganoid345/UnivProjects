@@ -1,0 +1,35 @@
+Prerequisites:
+    Limbajele regulate sunt inchise la:
+        - substitutii regulate
+        - morfisme
+        - morfisme inverse
+        - la intersectie (practic intersectie de automate)
+
+L = { aa+ w c (wR) }
+
+Presupunem ca L este un limbaj regulat.
+
+fie S substitutia regulata:
+	a -> lambda
+	b -> b
+	c -> c
+
+Fie L2 = S(L). L2 este regulat.
+
+L2 = { {b, c}* c ({b, c}*R) }
+
+fie F morfismul:
+	a -> b
+	b -> cb
+	c -> b
+
+fie L3 = F^-1(L2) . L3 este si el regulat.
+
+L3 = {x^i b y^(i-1), i > 0 si x, y apartin {a, b} }
+
+{a*b*} - este limbaj regulat
+fie L4 = L3 intersectat cu {a*b*}, iar L4 este si el regulat.
+
+L4 = {a^i b^i, i > 0}, care stim ca nu e regulat.
+Contractie. => nici L nu este regulat.
+QED

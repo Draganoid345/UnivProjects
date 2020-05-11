@@ -1,0 +1,130 @@
+-- BD Tema Laborator 3
+-- Dragancea Constantin
+-- Grupa 135
+
+
+-- Ex 1
+with Brown_id as (select f_id
+                from faculty
+                where f_last = 'Brown')
+select s_id as Cod, s_last "Student sau Curs"
+from student
+union
+select course_no as Cod, course_name "Student sau Curs"
+from course;
+
+-- Ex 2
+with database_course as (select c_sec_id from course_section where course_no = 'MIS 441'),
+    cs_course as (select c_sec_id from course_section where course_no = 'CS 155')
+select s.*
+from student s
+where (select count(*)
+        from enrollment e
+        where e.s_id = s.s_id and e.c_sec_id in (select * from database_course)) > 0
+    and
+    (select count(*)
+    from enrollment e
+    where e.s_id = s.s_id and e.c_sec_id in (select * from cs_course)) = 0;
+
+-- Ex 3
+with filter as (select s_id from enrollment group by s_id having min(nvl(grade, 'A')) <= 'C')
+select s_id, s_last
+from student
+where s_id in (select * from filter);
+
+-- Ex 4
+with cap_max as (select max(capacity) from location)
+select * from location where capacity = (select * from cap_max);
+
+-- Ex 5
+select min(id) + 1 "Min sau Max"
+from t
+where id + 1 not in (select * from t)
+union
+select max(id) - 1
+from t
+where id - 1 not in (select * from t);
+
+-- Ex 6
+select f.f_id, f.f_last,
+    decode((select count(*) from student s where s.f_id = f.f_id), 0, 'Nu', 'Da ('||
+        (select count(distinct s.s_id) from student s where s.f_id = f.f_id)||')') as Student,
+    decode ((select count(*) from course_section cs where cs.f_id = f.f_id), 0, 'Nu', 'Da ('||
+        (select count(distinct cs.course_no) from course_section cs where cs.f_id = f.f_id)||')') as Cursuri
+from faculty f;
+
+-- Ex 7
+select t1.term_id, t2.term_id
+from term t1, term t2
+where substr(t1.term_desc, 1, length(t1.term_desc) - 1) = 
+    substr(t2.term_desc, 1, length(t2.term_desc) - 1)
+    and t1.term_desc != t2.term_desc
+    and t1.term_id < t2.term_id;
+    
+-- Ex 8
+with s_courses as (select s.s_id, e.c_sec_id, cs.course_no from student s, enrollment e, course_section cs
+                where s.s_id = e.s_id and e.c_sec_id = cs.c_sec_id),
+    s_ids as (
+        select distinct sc.s_id
+        from s_courses sc, s_courses sc2
+        where sc.s_id = sc2.s_id and
+            sc.c_sec_id < sc2.c_sec_id and
+            substr(sc.course_no, 5, 1) != substr(sc2.course_no, 5, 1)
+    )
+select *
+from student
+where s_id in (select * from s_ids);
+
+-- Ex 9
+select distinct cs1.course_no, cs2.course_no
+from course_section cs1, course_section cs2
+where cs1.course_no > cs2.course_no and
+    cs1.term_id = cs2.term_id;
+    
+-- Ex 10
+with max_loc as (select min(max_enrl) from course_section where loc_id = 1)
+select distinct c.course_no, c.course_name, t.term_desc, cs.max_enrl
+from course c, course_section cs, term t
+where c.course_no = cs.course_no and
+    cs.term_id = t.term_id and
+    cs.max_enrl < (select * from max_loc);
+
+-- Ex 11
+with min_loc as (select min(max_enrl) from course_section)
+select c.course_name, cs.c_sec_id, cs.max_enrl
+from course c, course_section cs
+where c.course_no = cs.course_no and
+    cs.max_enrl = (select * from min_loc);
+
+-- Ex 12
+select f.f_id, f.f_last, round(avg(cs.max_enrl)) Mediu
+from faculty f, course_section cs
+where f.f_id = cs.f_id
+group by f.f_id, f.f_last;
+
+-- Ex 13
+select f.f_last, (select count(*) from student s where s.f_id = f.f_id) "Nr Studenti"
+from faculty f;
+
+-- Ex 14
+with filter as (select c.course_name, max(l.capacity) as mx
+    from course c, course_section cs, location l
+    where c.course_no = cs.course_no and
+        cs.loc_id = l.loc_id
+    group by c.course_name)
+select f.*, (select l2.loc_id
+            from location l2, course c2, course_section cs2
+            where l2.loc_id = cs2.loc_id and
+                cs2.course_no = c2.course_no and
+                l2.capacity = f.mx and
+                c2.course_name = f.course_name and
+                ROWNUM = 1) as id
+from filter f;
+
+-- Ex 15
+select t.term_desc, c.course_name, round(avg(cs.max_enrl)) Media
+from term t, course_section cs, course c
+where t.term_id = cs.term_id and
+    c.course_no = cs.course_no and
+    t.term_desc like '%2007'
+group by t.term_desc, c.course_name;
