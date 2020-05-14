@@ -1,11 +1,11 @@
 #include "NFA.hpp"
+#include <bits/stdc++.h>
 
 istream& operator>>(istream& in, NFA& ob){
     int m;
     in >> ob.nrStates >> m;
     ob.transitions.resize(ob.nrStates, map<char, set<int>>());
     ob.isFinal.resize(ob.nrStates, 0);
-    ob.isStart.resize(ob.nrStates, 0);
     for (int i=0; i<m; i++){
         int x, y; char c;
         in >> x >> y >> c;
@@ -57,9 +57,6 @@ void NFA::removeLambdaTransitions(){
 
                 // if the target state is final, then the current one is also a final state
                 if (isFinal[it]) isFinal[i] = 1, makeChanges = 1;
-
-                // if current state is an initial state, then the target state is also an initial state
-                if (isStart[i]) isStart[it] = 1, makeChanges = 1;
             }
             transitions[i][lambda].clear();
         }
@@ -67,9 +64,9 @@ void NFA::removeLambdaTransitions(){
 }
 
 NFA::operator DFA(){
+    this->removeLambdaTransitions();
     vector <map<char, int> > edges;
     vector <bool> finalStates;
-    vector <bool> initialStates;
     map <set <int>, int> mp;
     set <int> aux;
     queue < set<int> > Q;
@@ -84,9 +81,8 @@ NFA::operator DFA(){
         set <int> curr = Q.front();
         Q.pop();
         for (char c: alfabet){
-            for (const int &from: curr){
-                if (!transitions[from].count(c)) continue;
-                for (const int &to: transitions[from][c]){
+            for (auto &from: curr){
+                for (auto &to: transitions[from][c]){
                     aux.insert(to);
                 }
             }
@@ -104,5 +100,13 @@ NFA::operator DFA(){
             aux.clear();
         }
     }
-    return DFA(edges, initialState, finalStates);
+    return DFA(edges, mp[{initialState}], finalStates);
+}
+
+NFA::NFA(int initialState_, vector < map <char, set<int> > >& transitions_, vector <int>& finalStates_):
+    nrStates(transitions_.size()), transitions(transitions_), initialState(initialState_)
+{
+    isFinal.resize(nrStates);
+    for (int it: finalStates_)
+        isFinal[it] = 1;
 }

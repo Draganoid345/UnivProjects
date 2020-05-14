@@ -12,7 +12,7 @@
 using namespace std;
 
 ifstream in ("input.txt");
-ofstream out ("results.txt");
+ofstream out ("output.txt");
 
 int tests, n, valmax, negatives;
 vector <int> arr;

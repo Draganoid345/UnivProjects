@@ -10,11 +10,12 @@ class NFA{
 private:
     int nrStates;
     const char lambda = '#';
-    vector <map<char, set<int> > > transitions;
-    vector <bool> isStart;  
+    vector <map<char, set<int> > > transitions; 
     vector <bool> isFinal;
 public:
     int initialState;
+
+    NFA(int initialState_, vector < map <char, set<int> > >& transitions_, vector <int>& finalStates_);
     
     friend istream& operator>>(istream&, NFA&);
     friend ostream& operator<<(ostream&, const NFA&);

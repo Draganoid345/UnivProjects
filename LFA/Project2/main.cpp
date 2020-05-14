@@ -1,33 +1,31 @@
 #include <bits/stdc++.h>
 
+#include "DFA.hpp"
 #include "NFA.hpp"
+#include "RegGram.hpp"
 
 using namespace std;
 
 ifstream in ("input.in");
 
 int main(){
-    NFA automat;
-    in >> automat;
+    RegGram GramaticaRegulata;
+    in >> GramaticaRegulata;
 
-    cout << "Read the NFA:\n";
-    cout << automat << '\n';
+    cout << "Read the Regular Grammar:\n";
+    cout << GramaticaRegulata << '\n';
 
-    automat.removeLambdaTransitions();
+    NFA automatNFA = NFA(GramaticaRegulata);
+    cout << "Got the (lambda)NFA:\n";
+    cout << automatNFA << '\n';
 
-    cout << "Removed the lambda transitions:\n";
-    cout << automat << '\n';
+    DFA automatDFA = DFA(automatNFA);
+    cout << "Got the DFA\n";
+    cout << automatDFA << '\n';
 
-    //casting, sort of constructor operator
-    DFA automat2 = DFA(automat);
-
-    cout << "Converted the NFA to DFA:\n";
-    cout << automat2 << '\n';
-
-    automat2.minimize();
-    cout << "Minimized the DFA:\n";
-
-    cout << automat2;
+    automatDFA.minimize();
+    cout << "DFA minimizat:\n";
+    cout << automatDFA << '\n';
 
     return 0;
 }

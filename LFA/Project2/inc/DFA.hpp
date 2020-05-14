@@ -4,7 +4,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const string alfabet = "#abcdefgh0123456789";
+const string alfabet = "#abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
 class DFA{
 private:

@@ -13,3 +13,7 @@
     1. Conversie din lambda-NFA in NFA
     2. Conversie din NFA in DFA
     3. Minimizare de DFA
+
+### [Project3](Project2)
+
+    1. Conversie din Gramatica Regulata in DFA (minimizat)

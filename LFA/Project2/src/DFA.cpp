@@ -28,9 +28,12 @@ int DFA::find(vector <int> &pr, int q)const{
 bool DFA::isSameClass(vector <int> &pr, int &a, int &b){
     for (char c: alfabet){
         int unu = -1, doi = -1;
-        if (transitions[a].count(c)) unu = transitions[a][c];
-        if (transitions[b].count(c)) doi = transitions[b][c];
-        if (find(pr, unu) != find(pr, doi)) return false;
+        if (transitions[a].count(c))
+            unu = transitions[a][c];
+        if (transitions[b].count(c))
+            doi = transitions[b][c];
+        if (find(pr, unu) != find(pr, doi))
+            return false;
     }
     return true;
 }
@@ -79,17 +82,18 @@ void DFA::minimize(){
     removeUnreachableStates();
     vector <vector <int> > pr(2, vector<int>(nrStates, 0));
     map <int, vector<int> > mp[2];
-    int fnNod = -1;
+    int fnNod = -1, stNod = -1;
     for (int i=0; i < nrStates; i++){
         // nu e bine sa-l ignor, poate sa-mi imi scape un nod pt rejecturi
-        // if (isUnreachable[i]) continue;
+        if (isUnreachable[i]) continue;
         if (isFinal[i]){
             if (fnNod == -1) fnNod = i;
             pr[0][i] = fnNod;
             mp[0][fnNod].push_back(i);
         }
         else{
-            pr[0][i] = initialState;
+            if (stNod == -1) stNod = i;
+            pr[0][i] = stNod;
             mp[0][initialState].push_back(i);
         }
     }
@@ -120,17 +124,12 @@ void DFA::minimize(){
             }
         }
         dpState = !dpState;
-        // for (auto &it: mp[!dpState]){
-        //     for (auto it2: it.second) cout << it2 << ' ';
-        //     cout << '\n';
-        // }
-        // cout << "\n";
         pr[dpState].clear();
         pr[dpState].resize(nrStates, 0);
         mp[dpState].clear();
     }
     int n = 0, initState2 = -1;
-    vector <int> newIdx(nrStates);
+    vector <int> newIdx(nrStates, -1);
     vector <bool> isFinal2, isUnreachable2;
     for (auto &it: mp[!dpState]){
         newIdx[it.first] = n++;
