@@ -1,0 +1,225 @@
+-- Tema Laborator BD 4
+-- Dragancea Constantin
+-- Grupa 135
+
+-- Ex 1
+select distinct s.*
+from student s
+where s.s_id not in (select distinct s_id
+                from enrollment e
+                where e.grade is null);
+
+
+
+-- Ex2
+with filter as
+    (select bldg_code
+    from location
+    where loc_id not in (select distinct loc_id from course_section))
+select bldg_code
+from location
+where bldg_code not in (select * from filter);
+
+
+
+-- Ex3
+select distinct f.f_id, f.f_last
+from faculty f, student s, enrollment e
+where s.f_id = f.f_id and
+    e.s_id = s.s_id and
+    e.grade = 'A'
+union
+select distinct f.f_id, f.f_last
+from faculty f, course_section cs
+where f.f_id = cs.f_id and
+    cs.course_no = 'MIS 441';
+
+
+
+-- Ex 4
+with cap_max as (select max(capacity) from location),
+    prof_curs_cap_max as (select distinct f.f_id
+                        from faculty f, course_section cs, location l
+                        where f.f_id = cs.f_id and
+                        cs.loc_id = l.loc_id and
+                        l.capacity = (select * from cap_max)),
+    curs_stud_max as (select e.c_sec_id
+                    from enrollment e
+                    group by e.c_sec_id
+                    having count(e.s_id) = (
+                        select max(count(e2.s_id))
+                        from enrollment e2
+                        group by e2.c_sec_id))           
+select distinct f_last
+from faculty
+where f_id in (select * from prof_curs_cap_max)
+union
+select f.f_last
+from faculty f, course_section cs
+where f.f_id = cs.f_id and
+    cs.c_sec_id = (select * from curs_stud_max);
+    
+    
+    
+-- Ex 5
+with filter as (select cs.c_sec_id
+                from course_section cs, location l
+                where cs.loc_id = l.loc_id and
+                    l.capacity = (select max(l2.capacity) from location l2)),
+    filter2 as (select min(cs.max_enrl)
+                from course_section cs, filter f
+                where cs.c_sec_id = f.c_sec_id),
+    filter_ids as (select f.c_sec_id
+                from filter f, course_section cs
+                where f.c_sec_id = cs.c_sec_id and
+                    cs.max_enrl = (select * from filter2))
+select f.f_id, f.f_last
+from faculty f, course_section cs
+where cs.c_sec_id in (select * from filter_ids) and
+    cs.f_id = f.f_id
+intersect
+select f.f_id, f.f_last
+from faculty f, location l
+where f.loc_id = l.loc_id and
+    l.capacity = (select min(l2.capacity) from location l2);
+
+
+
+-- Ex 6
+select round(avg(sali.capacity), 2) "Capacitatea salilor", round(avg(enrl.max_enrl), 2) "Locuri la curs"
+from (select distinct l.loc_id, l.capacity from course_section cs, location l
+    where cs.loc_id = l.loc_id and cs.f_id = 1) sali,
+    (select distinct cs.c_sec_id, cs.max_enrl from course_section cs, enrollment e
+    where e.s_id = 'JO100' and e.c_sec_id = cs.c_sec_id) enrl;
+
+
+
+-- Ex 7
+select l.bldg_code, round(avg(l.capacity), 2)
+from location l
+where l.bldg_code in (select l2.bldg_code
+    from location l2, course c, course_section cs
+    where lower(c.course_name) like '%systems%' and
+        c.course_no = cs.course_no and
+        cs.loc_id = l2.loc_id)
+group by l.bldg_code;
+
+
+
+-- Ex 8
+select l.bldg_code as "Codul cladirii", round(avg(l.capacity), 2) as "Media capacitatilor" 
+from location l
+where l.bldg_code in (select distinct l2.bldg_code
+                    from course_section cs, location l2, course c
+                    where lower(c.course_name) like '%systems%' and
+                        c.course_no = cs.course_no and
+                        cs.loc_id = l2.loc_id)
+group by l.bldg_code 
+union
+select 'Total' as "Codul cladirii", round(avg(l.capacity), 2) as "Media capacitatilor" 
+from location l
+where l.bldg_code in (select distinct l2.bldg_code
+                    from course c, course_section cs, location l2
+                    where lower(c.course_name) like '%systems%' and
+                        c.course_no = cs.course_no and
+                        cs.loc_id = l2.loc_id);
+
+
+
+-- Ex 9
+select course_no, course_name
+from course
+where (select count(*) from course where course_name like '%Java%') = 0 or
+    course_name like '%Java%';
+
+
+
+-- Ex 10
+select c.*
+from course c
+where decode((select count(*) from course_section cs, faculty f
+            where c.course_no = cs.course_no and
+                cs.f_id = f.f_id and f.f_last = 'Brown'), 0, 0, 1) + 
+    decode((select count(*) from course_section cs, enrollment e
+            where c.course_no = cs.course_no and
+                cs.c_sec_id = e.c_sec_id and
+                e.s_id = 'JO100'), 0, 0, 1) +
+    decode((select count(*) from course c2
+        where c2.course_no = c.course_no and
+            c2.course_name like '%Database%'), 0, 0, 1) +
+    decode((select count(*) from course_section cs, term t
+        where c.course_no = cs.course_no and
+            cs.term_id = t.term_id and
+            t.term_desc like '%2007%'), 0, 0, 1) >= 3;
+
+
+
+-- Ex 11
+with nr_max as
+    (select max(count(c.course_no))
+    from course c, course_section cs, term t
+    where t.term_id = cs.term_id and
+        cs.course_no = c.course_no and
+        c.course_name like '%Database%'
+    group by t.term_id)
+select t.term_desc, count(c.course_no) "Numar cursuri"
+from term t, course_section cs, course c
+where t.term_id = cs.term_id and
+    cs.course_no = c.course_no and
+    c.course_name like '%Database%'
+group by t.term_id, t.term_desc
+having count(c.course_no) = (select * from nr_max);
+
+
+
+-- Ex 12
+with nr_max as
+    (select max(count(distinct s_id))
+    from enrollment
+    where grade is not null
+    group by grade)
+select grade as Nota, count(distinct s_id) "Numar studenti"
+from enrollment
+group by grade
+having count(distinct s_id) = (select * from nr_max);
+
+
+
+-- Ex 13
+with nr_max as
+    (select max(count(distinct c.course_no))
+    from term t, course_section cs, course c
+    where t.term_id = cs.term_id and
+        cs.course_no = c.course_no and
+        c.credits = 3
+    group by t.term_id)
+select t.term_id, t.term_desc, count(distinct c.course_no) "Numar materii"
+from term t, course_section cs, course c
+where t.term_id = cs.term_id and
+    cs.course_no = c.course_no and
+    c.credits = 3
+group by t.term_id, t.term_desc
+having count(distinct c.course_no) = (select * from nr_max);
+
+
+
+-- Ex 14
+select distinct l.*
+from location l, course_section cs, course c
+where l.loc_id = cs.loc_id and
+    cs.course_no = c.course_no and
+    c.course_name like '%C++%'
+intersect
+select distinct l.*
+from location l, course_section cs, course c
+where l.loc_id = cs.loc_id and
+    cs.course_no = c.course_no and
+    c.course_name like '%Database%';
+
+
+
+-- Ex 15
+select bldg_code
+from location
+group by bldg_code
+having count(loc_id) = 1;
