@@ -15,6 +15,7 @@ private:
 public:
     int initialState;
 
+    NFA();
     NFA(int initialState_, vector < map <char, set<int> > >& transitions_, vector <int>& finalStates_);
     
     friend istream& operator>>(istream&, NFA&);

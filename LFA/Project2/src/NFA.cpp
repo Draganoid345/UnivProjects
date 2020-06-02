@@ -1,6 +1,8 @@
 #include "NFA.hpp"
 #include <bits/stdc++.h>
 
+NFA::NFA() {}
+
 istream& operator>>(istream& in, NFA& ob){
     int m;
     in >> ob.nrStates >> m;
