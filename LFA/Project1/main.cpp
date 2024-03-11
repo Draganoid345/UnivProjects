@@ -10,11 +10,11 @@ int main(){
     Automat automat;
     in >> automat;
 
-    int nrWords;
-    in >> nrWords;
+    int nWords;
+    in >> nWords;
     string word;
     getline(in, word);
-    while (nrWords--){
+    while (nWords--){
         getline(in, word);
         if (automat.isAccepted(word, automat.initialState))
             cout << word << " apartine automatului\n";
